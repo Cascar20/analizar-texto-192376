@@ -10,16 +10,18 @@ public class AnalizadorTexto {
         int totalLetras = 0;
         int totalPalabras = 0;
         int totalVocales = 0;
+        
+        final int LARGO_TEXTO = texto.length(); // El largo del texto se saca del for para que dicha operacion no se repita tantas veces
 
-        for (int i = 0; i < texto.length(); i++) {
-            char c = texto.charAt(i);
-            if (c >= 'a' && c <= 'z') {
-                frecuencia[c - 'a']++;
+        for (int i = 0; i < LARGO_TEXTO ; i++) {
+            char caracter = texto.charAt(i); // Se agrega una variable mas descriptiva para que la revision de codigo sea mas sencilla
+            if (caracter >= 'a' && caracter <= 'z') {
+                frecuencia[caracter - 'a']++;
                 totalLetras++;
-                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                if (caracter == 'a' || caracter == 'e' || caracter == 'i' || caracter == 'o' || caracter == 'u') {
                     totalVocales++;
                 }
-            } else if (c == ' ' && i > 0 && texto.charAt(i - 1) != ' ') {
+            } else if (caracter == ' ' && i > 0 && texto.charAt(i - 1) != ' ') {
                 totalPalabras++;
             }
         }
@@ -30,7 +32,9 @@ public class AnalizadorTexto {
         System.out.println("Total de palabras: " + totalPalabras);
         System.out.println("Total de vocales: " + totalVocales);
         System.out.println("Frecuencia de letras:");
-        for (int i = 0; i < 26; i++) {
+
+        final byte LETRAS_ALFABETO = 26; // Se saca el valor magico y se le da a una variable; se usa byte porque el numero es y siempre sera pequeño
+        for (int i = 0; i < LETRAS_ALFABETO; i++) {
             if (frecuencia[i] > 0) {
                 System.out.println((char) (i + 'a') + ": " + frecuencia[i]);
             }
